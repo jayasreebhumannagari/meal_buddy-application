@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome page</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Restaurant Info</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <h3>Update Restaurant Info</h3>
+    <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
+        {% csrf_token %}
+        <label>Restaurant name </label>
+        <input type="text" name="name" value="{{ restaurant.name}}">
+        <br><br>
+        <label>Picture url </label>
+        <input type="text" name="picture" value="{{restaurant.picture}}">
+        <br><br>
+        <label>Cuisine </label>
+        <input type="text" name="cuisine" value="{{restaurant.cuisine}}">
+        <br><br>
+        <label>Rating</label>
+        <input type="number" name="rating" min="0" max="5" step="0.5"  value="{{restaurant.rating}}">
+        <br><br>
+        <br><br>
+        <button type="submit">Update Restaurant</button>
+    </form>
+</body>
+</html>
